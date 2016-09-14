@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -25,16 +27,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final EditText editText = (EditText) findViewById(R.id.test_edit_text);
+        final TextView displayResults = (TextView) findViewById(R.id.emotions_display_textbox);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
-                    String text = "Our understanding of technology may be advancing at an ever-accelerating rate, but our knowledge of these more vague concepts -- intelligence, consciousness, what the human mind even is -- remains in a ridiculously infantile stage. Technology may be poised to usher in an era of computer-based humanity, but neuroscience, psychology and philosophy are not. The technological singularity may be approaching, but our understanding of psychology, neuroscience and philosophy is far more nebulous, and all of these fields must work in harmony in order for the singularity's promises to be fulfilled. Scientists have made vast advances in technological fields in recent decades, and computers are growing stronger by the year, but a more powerful computer does not equate to a breakthrough in philosophical understanding. More accurately mapping the brain does not mean we understand the mind.";
+                    String text = editText.getText().toString();
                     mState = Empathyscope.getInstance().feel(text);
-                    Snackbar.make(view, mState.getStrongestEmotion().toString(), Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    displayResults.setText(mState.toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
