@@ -30,6 +30,7 @@
         android:inputType="textMultiLine|textCapSentences|textAutoCorrect"
         android:gravity="top|left"
         android:scrollHorizontally="false"
+        android:text="@string/pl_post_long"
         />
 
     <TextView
