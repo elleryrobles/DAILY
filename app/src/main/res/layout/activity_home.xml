@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="hd.josh.daily.MainActivity">
+    tools:context="hd.josh.daily.home.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,18 +23,10 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="hd.josh.daily.MainActivityFragment"
+        android:name="hd.josh.daily.home.HomeActivityFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:layout="@layout/fragment_main" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        tools:layout="@layout/fragment_home" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -7,6 +7,8 @@
     android:elevation="@dimen/cardview_default_elevation"
     android:background="@color/material_blue_grey_50">
 
+    <include layout="@layout/divider_horizontal"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing_medium"
@@ -44,7 +46,5 @@
         android:layout_marginRight="@dimen/spacing_xxsmall"
         android:gravity="top|start"
         />
-
-    <include layout="@layout/divider_horizontal"/>
 
 </LinearLayout>
