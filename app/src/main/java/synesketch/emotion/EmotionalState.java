@@ -18,11 +18,15 @@
  */
 package synesketch.emotion;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import hd.josh.daily.objects.SimpleEmotionalState;
 import synesketch.SynesketchState;
 
 /**
@@ -40,7 +44,7 @@ import synesketch.SynesketchState;
  * </ul>
  * <p>
  * Weights have values between 0 and 1 (0 for no emotion, 1 for full emotion,
- * 0.5 for the emotion of average intesity). Valence can be -1, 0, or 1
+ * 0.5 for the emotion of average intensity). Valence can be -1, 0, or 1
  * (negative, neutral, and positive emotion, respectively).
  * 
  * @author Uros Krcadinac email: uros@krcadinac.com
@@ -50,11 +54,8 @@ import synesketch.SynesketchState;
 public class EmotionalState extends SynesketchState {
 
 	private double generalWeight = 0.0;
-
 	private int valence = 0;
-
 	private EmotionalState previous;
-
 	private SortedSet<Emotion> emotions;
 
 	/**
@@ -344,4 +345,14 @@ public class EmotionalState extends SynesketchState {
 		+ getSurpriseWeight();
 	}
 
+	public SimpleEmotionalState getSimpleState() {
+		return new SimpleEmotionalState(
+				getAngerWeight(),
+				getFearWeight(),
+				getHappinessWeight(),
+				getSurpriseWeight(),
+				getSadnessWeight(),
+				getDisgustWeight()
+		);
+	}
 }

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hd.josh.daily.objects.CardFragment;
+import hd.josh.daily.objects.Day;
+import hd.josh.daily.utils.AppController;
 
 public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implements CardAdapter {
 
@@ -21,8 +23,10 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implemen
         mFragments = new ArrayList<>();
         mBaseElevation = baseElevation;
 
-        for(int i = 0; i< 5; i++){
-            addCardFragment(new CardFragment());
+        ArrayList<Day> days = AppController.getInstance().getDays();
+
+        for(Day day : days){
+            addCardFragment(CardFragment.newInstance(day));
         }
     }
 

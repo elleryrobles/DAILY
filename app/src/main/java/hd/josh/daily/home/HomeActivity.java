@@ -1,24 +1,26 @@
 package hd.josh.daily.home;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import java.io.IOException;
 
 import hd.josh.daily.R;
+import hd.josh.daily.adapters.CardFragmentPagerAdapter;
+import hd.josh.daily.utils.ShadowTransformer;
+import hd.josh.daily.utils.Tools;
 import synesketch.emotion.EmotionalState;
-import synesketch.emotion.Empathyscope;
 
 public class HomeActivity extends AppCompatActivity {
 
     private EmotionalState mState;
+    private ViewPager mViewPager;
+    private CardFragmentPagerAdapter mCardAdapter;
+    private ShadowTransformer mCardShadowTransformer;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +29,14 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final EditText editText = (EditText) findViewById(R.id.test_edit_text);
-        final TextView displayResults = (TextView) findViewById(R.id.emotions_display_textbox);
+        mViewPager = (ViewPager) findViewById(R.id.home_entry_viewpager);
+        mCardAdapter = new CardFragmentPagerAdapter(getSupportFragmentManager(), Tools.dpToPixels(this, 2));
+        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+        mCardShadowTransformer.enableScaling(true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                try {
-                    String text = editText.getText().toString();
-                    mState = Empathyscope.getInstance().feel(text);
-                    displayResults.setText(mState.toString());
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        mViewPager.setAdapter(mCardAdapter);
+        mViewPager.setPageTransformer(false, mCardShadowTransformer);
+        mViewPager.setOffscreenPageLimit(3);
     }
 
     @Override
@@ -61,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,7 +8,7 @@
     android:elevation="@dimen/cardview_default_elevation"
     android:background="@color/material_blue_grey_50">
 
-    <include layout="@layout/divider_horizontal"/>
+    <include layout="@layout/divider_horizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,13 +19,14 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/entry_weather_icon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_weather_cloudy"
             android:tint="@color/colorPrimary"/>
 
         <TextView
-            android:id="@+id/card_entry_time"
+            android:id="@+id/entry_timestamp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:text="@string/pl_time_pm"
@@ -36,7 +38,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/card_entry_text"
+        android:id="@+id/entry_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="@string/pl_post_long"

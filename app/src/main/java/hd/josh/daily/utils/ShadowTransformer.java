@@ -1,4 +1,4 @@
-package hd.josh.daily.tools;
+package hd.josh.daily.utils;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;

@@ -2,6 +2,9 @@
     <string name="app_name">DAILY</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Screen titles -->
+    <string name="edit_entry_title">Edit Entry</string>
+
     <!-- Emotions -->
     <string name="em_anger">Anger</string>
     <string name="em_fear">Fear</string>

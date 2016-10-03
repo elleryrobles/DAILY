@@ -1,7 +1,12 @@
-package hd.josh.daily.tools;
+package hd.josh.daily.utils;
+
+import android.content.Context;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import hd.josh.daily.R;
 
@@ -10,9 +15,9 @@ import hd.josh.daily.R;
  */
 
 public class Tools {
-    private static SimpleDateFormat dfDay = new SimpleDateFormat("EEEE, MMMM d");
-    private static SimpleDateFormat dfYear = new SimpleDateFormat("YYYY");
-    private static SimpleDateFormat dfTime = new SimpleDateFormat("h:mm a");
+    private static SimpleDateFormat dfDay = new SimpleDateFormat("EEEE, MMMM d", Locale.US);
+    private static SimpleDateFormat dfYear = new SimpleDateFormat("YYYY", Locale.US);
+    private static SimpleDateFormat dfTime = new SimpleDateFormat("h:mm a", Locale.US);
 
     public static String getDay(Date date) {
         return dfDay.format(date);
@@ -26,7 +31,11 @@ public class Tools {
         return dfTime.format(date);
     }
 
-    public int getIcon(int weatherCode) {
+    public static Date today() {
+        return Calendar.getInstance().getTime();
+    }
+
+    public static int getWeatherIcon(int weatherCode) {
         int iconRes = R.drawable.ic_weather_sunny;
         int digit1 = Integer.parseInt(Integer.toString(weatherCode).substring(0, 1));
 
@@ -102,7 +111,7 @@ public class Tools {
                         iconRes = R.drawable.ic_weather_sunny;
                         break;
                     case 801:
-                        iconRes = R.drawable.ic_weather_partlycloudy
+                        iconRes = R.drawable.ic_weather_partlycloudy;
                         break;
                     case 802:
                     case 803:
@@ -136,5 +145,17 @@ public class Tools {
 
 
         return iconRes;
+    }
+
+    public static float dpToPixels(Context context, int dp) {
+        return dp * (context.getResources().getDisplayMetrics().density);
+    }
+
+    public static double avg(ArrayList<Double> doubles) {
+        Double average = 0.0;
+        for (Double dub : doubles) {
+            average += dub;
+        }
+        return average / doubles.size();
     }
 }
