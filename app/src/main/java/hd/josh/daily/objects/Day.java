@@ -29,7 +29,7 @@ public class Day implements Parcelable{
     public Day(Date date, ArrayList<Entry> entries, int sentiment) {
         mDate = date;
         mDateDay = Tools.getDay(mDate);
-        mDateYear = Tools.getDay(mDate);
+        mDateYear = Tools.getYear(mDate);
         mSentiment = sentiment;
         mEntries = entries;
         updateCombinedState();

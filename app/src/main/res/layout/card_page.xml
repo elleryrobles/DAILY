@@ -18,32 +18,40 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/day_date"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom|start"
-            android:text="@string/pl_weekday_date"
-            android:textSize="@dimen/text_title_xlarge"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:layout_marginLeft="@dimen/spacing_small"
-            android:layout_marginRight="@dimen/spacing_small"
-            />
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
 
-        <TextView
-            android:id="@+id/day_year"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom|start"
-            android:text="@string/pl_year"
-            android:textSize="@dimen/text_title_xsmall"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginLeft="@dimen/spacing_small"
-            android:layout_marginRight="@dimen/spacing_small"
-            android:layout_marginTop="@dimen/spacing_xxxsmall"
-            android:layout_marginBottom="@dimen/spacing_small"
-            />
+            <TextView
+                android:id="@+id/day_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|start"
+                android:text="@string/pl_weekday_date"
+                android:textSize="@dimen/text_title_xlarge"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_small"
+                />
+
+            <TextView
+                android:id="@+id/day_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|start"
+                android:text="@string/pl_year"
+                android:textSize="@dimen/text_title_xsmall"
+                android:textColor="@color/colorAccent"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_xxxsmall"
+                android:layout_marginBottom="@dimen/spacing_small"
+                />
+
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/day_entry_recycler"

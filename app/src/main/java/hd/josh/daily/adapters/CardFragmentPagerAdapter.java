@@ -25,7 +25,7 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implemen
 
         ArrayList<Day> days = AppController.getInstance().getDays();
 
-        for(Day day : days){
+        for (Day day : days){
             addCardFragment(CardFragment.newInstance(day));
         }
     }

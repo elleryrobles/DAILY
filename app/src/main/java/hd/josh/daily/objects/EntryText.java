@@ -3,21 +3,33 @@ package hd.josh.daily.objects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.IOException;
 import java.util.Date;
 
+import hd.josh.daily.utils.Tools;
 import synesketch.emotion.EmotionalState;
+import synesketch.emotion.Empathyscope;
 
 public class EntryText extends Entry {
     private String mText;
-    private SimpleEmotionalState mState;
+    private SimpleEmotionalState mState = new SimpleEmotionalState();
 
     public EntryText() {
         // empty constructor
     }
 
-    public EntryText(String entryText, EmotionalState state) {
+    public EntryText(Date date, Weather weather, String entryText) {
+        mDate = date;
+        mDateTime = Tools.getTime(mDate);
+        mWeather = weather;
         mText = entryText;
-        mState = state.getSimpleState();
+
+        try {
+            mState = Empathyscope.getInstance().feel(mText).getSimpleState();
+        } catch(IOException e) {
+            e.printStackTrace();
+            mState = new SimpleEmotionalState();
+        }
     }
 
     public String getText() {

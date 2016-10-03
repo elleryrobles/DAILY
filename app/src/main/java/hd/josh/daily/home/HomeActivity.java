@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import hd.josh.daily.R;
 import hd.josh.daily.adapters.CardFragmentPagerAdapter;
+import hd.josh.daily.utils.AppController;
 import hd.josh.daily.utils.ShadowTransformer;
 import hd.josh.daily.utils.Tools;
 import synesketch.emotion.EmotionalState;
@@ -29,12 +30,14 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        AppController.getInstance().generateTestDays(10);
+
         mViewPager = (ViewPager) findViewById(R.id.home_entry_viewpager);
         mCardAdapter = new CardFragmentPagerAdapter(getSupportFragmentManager(), Tools.dpToPixels(this, 2));
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
-        mCardShadowTransformer.enableScaling(true);
-
         mViewPager.setAdapter(mCardAdapter);
+
+        mCardShadowTransformer.enableScaling(true);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
     }
