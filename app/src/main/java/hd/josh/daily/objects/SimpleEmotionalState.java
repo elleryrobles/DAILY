@@ -79,6 +79,15 @@ public class SimpleEmotionalState implements Parcelable {
         mDisgust = disgust;
     }
 
+    public String toString() {
+        return "Anger: " + mAnger +
+                "\nFear: " + mFear +
+                "\nHappiness: " + mHappiness +
+                "\nSurprise: " + mSurprise +
+                "\nSadness: " + mSadness +
+                "\nDisgust: " + mDisgust;
+    }
+
     @Override
     public int describeContents() {
         return 0;

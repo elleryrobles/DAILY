@@ -1,6 +1,7 @@
 package hd.josh.daily.home;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,13 +34,15 @@ public class HomeActivity extends AppCompatActivity {
         AppController.getInstance().generateTestDays(10);
 
         mViewPager = (ViewPager) findViewById(R.id.home_entry_viewpager);
-        mCardAdapter = new CardFragmentPagerAdapter(getSupportFragmentManager(), Tools.dpToPixels(this, 2));
-        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+        mCardAdapter = new CardFragmentPagerAdapter(getSupportFragmentManager(), Tools.dpToPixels(this, 2),
+                AppController.getInstance().getDays());
         mViewPager.setAdapter(mCardAdapter);
-
-        mCardShadowTransformer.enableScaling(true);
-        mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setCurrentItem(mCardAdapter.getCount() - 1, false);
+
+        mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
+        mCardShadowTransformer.enableScaling(true);
+        mViewPager.setPageTransformer(true, mCardShadowTransformer);
     }
 
     @Override

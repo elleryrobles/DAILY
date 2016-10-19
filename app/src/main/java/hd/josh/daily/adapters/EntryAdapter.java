@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -37,11 +39,18 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
 
 
     private void initEntryText(EntryViewHolder holder, final int position) {
-        EntryText entry = (EntryText)mEntries.get(position);
+        final EntryText entry = (EntryText)mEntries.get(position);
 
         holder.entryWeatherImage.setImageResource(entry.getWeather().getIconRes());
         holder.entryTimestamp.setText(entry.getDateTime());
         holder.entryText.setText(entry.getText());
+
+        holder.entryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, entry.getState().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -67,6 +76,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
 
     class EntryViewHolder extends RecyclerView.ViewHolder
     {
+        public LinearLayout entryLayout;
         public ImageView entryWeatherImage;
         public TextView entryTimestamp;
         public TextView entryText;
@@ -74,6 +84,7 @@ public class EntryAdapter extends RecyclerView.Adapter<EntryAdapter.EntryViewHol
         public EntryViewHolder(View itemView)
         {
             super(itemView);
+            entryLayout = (LinearLayout) itemView.findViewById(R.id.entry_layout);
             entryWeatherImage = (ImageView) itemView.findViewById(R.id.entry_weather_icon);
             entryTimestamp = (TextView) itemView.findViewById(R.id.entry_timestamp);
             entryText = (TextView) itemView.findViewById(R.id.entry_text);

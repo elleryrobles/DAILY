@@ -2,20 +2,21 @@ package hd.josh.daily.utils;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 
 import hd.josh.daily.adapters.CardAdapter;
-
-/**
- * Created by Josh HD on 9/20/2016.
- */
+import hd.josh.daily.adapters.CardFragmentPagerAdapter;
 
 public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPager.PageTransformer {
 
+    public static final String TAG = ShadowTransformer.class.getSimpleName();
     private ViewPager mViewPager;
     private CardAdapter mAdapter;
     private float mLastOffset;
     private boolean mScalingEnabled;
+    private float mMinScale = 1.0f;
+    private float mFullScale = 1.1f;
 
     public ShadowTransformer(ViewPager viewPager, CardAdapter adapter) {
         mViewPager = viewPager;
@@ -24,19 +25,21 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
     }
 
     public void enableScaling(boolean enable) {
+//        onPageSelected(mViewPager.getCurrentItem());
+
         if (mScalingEnabled && !enable) {
             // shrink main card
             CardView currentCard = mAdapter.getCardViewAt(mViewPager.getCurrentItem());
             if (currentCard != null) {
-                currentCard.animate().scaleY(1);
-                currentCard.animate().scaleX(1);
+                currentCard.animate().scaleY(mMinScale);
+                currentCard.animate().scaleX(mMinScale);
             }
         }else if(!mScalingEnabled && enable){
             // grow main card
             CardView currentCard = mAdapter.getCardViewAt(mViewPager.getCurrentItem());
             if (currentCard != null) {
-                currentCard.animate().scaleY(1.1f);
-                currentCard.animate().scaleX(1.1f);
+                currentCard.animate().scaleY(mFullScale);
+                currentCard.animate().scaleX(mFullScale);
             }
         }
 

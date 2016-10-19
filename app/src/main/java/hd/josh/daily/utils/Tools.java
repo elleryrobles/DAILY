@@ -16,7 +16,7 @@ import hd.josh.daily.R;
 
 public class Tools {
     private static SimpleDateFormat dfDay = new SimpleDateFormat("EEEE, MMMM d", Locale.US);
-    private static SimpleDateFormat dfYear = new SimpleDateFormat("YYYY", Locale.US);
+    private static SimpleDateFormat dfYear = new SimpleDateFormat("yyyy", Locale.US);
     private static SimpleDateFormat dfTime = new SimpleDateFormat("h:mm a", Locale.US);
 
     public static String getDay(Date date) {

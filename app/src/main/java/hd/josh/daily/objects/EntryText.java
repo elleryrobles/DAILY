@@ -24,6 +24,8 @@ public class EntryText extends Entry {
         mWeather = weather;
         mText = entryText;
 
+//        mState = new SimpleEmotionalState();
+
         try {
             mState = Empathyscope.getInstance().feel(mText).getSimpleState();
         } catch(IOException e) {
@@ -40,15 +42,11 @@ public class EntryText extends Entry {
         mText = text;
     }
 
-    public SimpleEmotionalState getEmotionalState() {
+    public SimpleEmotionalState getState() {
         return mState;
     }
 
-    public void setEmotionalState(EmotionalState state) {
-        mState = state.getSimpleState();
-    }
-
-    public void setEmotionalState(SimpleEmotionalState state) {
+    public void setState(SimpleEmotionalState state) {
         mState = state;
     }
 
@@ -60,7 +58,6 @@ public class EntryText extends Entry {
         dest.writeString(mText);
         dest.writeParcelable(mState, flags);
     }
-
 
     public static final Parcelable.Creator<EntryText> CREATOR = new Parcelable.Creator<EntryText>() {
         public EntryText createFromParcel(Parcel in)

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
     tools:context="hd.josh.daily.home.HomeActivity">
 
     <LinearLayout
@@ -36,7 +37,6 @@
             android:clipToPadding="false"
             android:overScrollMode="never"
             android:paddingTop="@dimen/spacing_small"
-            android:paddingBottom="@dimen/spacing_tiny"
             android:paddingLeft="@dimen/spacing_medium"
             android:paddingRight="@dimen/spacing_medium" />
 

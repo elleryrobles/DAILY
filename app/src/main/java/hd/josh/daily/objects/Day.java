@@ -67,6 +67,14 @@ public class Day implements Parcelable{
         mSentiment = sentiment;
     }
 
+    public SimpleEmotionalState getCombinedState() {
+        return mCombinedState;
+    }
+
+    public void setCombinedState(SimpleEmotionalState combinedState) {
+        mCombinedState = combinedState;
+    }
+
     public List<Entry> getEntries() {
         return mEntries;
     }
@@ -101,7 +109,7 @@ public class Day implements Parcelable{
 
         for (Entry entry : mEntries) {
             if (entry instanceof EntryText) {
-                SimpleEmotionalState entryState = ((EntryText)entry).getEmotionalState();
+                SimpleEmotionalState entryState = ((EntryText)entry).getState();
                 anger.add(entryState.getAnger());
                 fear.add(entryState.getFear());
                 happiness.add(entryState.getHappiness());

@@ -15,18 +15,18 @@ import hd.josh.daily.utils.AppController;
 
 public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implements CardAdapter {
 
-    private List<CardFragment> mFragments;
+    private ArrayList<CardFragment> mFragments;
     private float mBaseElevation;
+    private ArrayList<Day> mDays;
 
-    public CardFragmentPagerAdapter(FragmentManager fm, float baseElevation) {
+    public CardFragmentPagerAdapter(FragmentManager fm, float baseElevation, ArrayList<Day> days) {
         super(fm);
         mFragments = new ArrayList<>();
         mBaseElevation = baseElevation;
+        mDays = days;
 
-        ArrayList<Day> days = AppController.getInstance().getDays();
-
-        for (Day day : days){
-            addCardFragment(CardFragment.newInstance(day));
+        for (int i = mDays.size() - 1; i >= 0; --i) {
+            addCardFragment(CardFragment.newInstance(mDays.get(i), i));
         }
     }
 
@@ -46,19 +46,18 @@ public class CardFragmentPagerAdapter extends FragmentStatePagerAdapter implemen
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public CardFragment getItem(int position) {
         return mFragments.get(position);
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        Object fragment = super.instantiateItem(container, position);
-        mFragments.set(position, (CardFragment) fragment);
+    public CardFragment instantiateItem(ViewGroup container, int position) {
+        CardFragment fragment = (CardFragment) super.instantiateItem(container, position);
+        mFragments.set(position, fragment);
         return fragment;
     }
 
     public void addCardFragment(CardFragment fragment) {
         mFragments.add(fragment);
     }
-
 }
